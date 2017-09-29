@@ -11,6 +11,8 @@ Tag / Token Input
 
 jQuery plugin that stylizes an input and allows a user to type keywords, which will be broken up into tokens/tags and displayed separately. It's what you'd expect to see when tagging a post on Tumblr or Stack-Overflow. Mostly, I just wanted to do this myself, from scratch.
 
+*This Fork*: To create a two merger token for Field:Value items.
+
 Screenshot:
 
 ![A screenshot of the input form.](https://cloud.githubusercontent.com/assets/1848368/7214289/eec96300-e559-11e4-92f2-3859b9f3fc00.png)
