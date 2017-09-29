@@ -3,9 +3,10 @@
   "version": "1.3.1",
   "homepage": "https://www.donmccurdy.com/input-tokenizer/",
   "authors": [
-    "Don McCurdy <dm@donmccurdy.com>"
+    "Don McCurdy <dm@donmccurdy.com>",
+    "Deo Fetalvero <dmfetalvero@up.edu.ph>"
   ],
-  "description": "jQuery plugin that allows a user to type keywords, which will be broken up into tokens/tags and displayed, similarly to tagging a post on Tumblr or Stack-Overflow.",
+  "description": "jQuery plugin that allows a user to type field:value keywords, useful for searching SQL Databases.",
   "main": ["tokenizer.js", "input_style.css"],
   "keywords": [
     "autocomplete",

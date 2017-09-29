@@ -1,21 +1,17 @@
-Tag / Token Input
-===============
+Field : Value Tag / Token Input
+===============================
 
 *Features*: Optional autosuggest, custom callbacks, easy setup, custom CSS prefixing.
 
-*Demo*: [donmccurdy.github.io/input-tokenizer/](https://donmccurdy.github.io/input-tokenizer/)
+*Source Demo*: [donmccurdy.github.io/input-tokenizer/](https://donmccurdy.github.io/input-tokenizer/)
 
 *Size*: 1.7kb gzipped, 4.1kb minified.
 
 *Dependencies*: jQuery 1.8-2.0+. (I haven't tested below 1.8, but it might work...)
 
-jQuery plugin that stylizes an input and allows a user to type keywords, which will be broken up into tokens/tags and displayed separately. It's what you'd expect to see when tagging a post on Tumblr or Stack-Overflow. Mostly, I just wanted to do this myself, from scratch.
+*Origin*:jQuery plugin that stylizes an input and allows a user to type keywords, which will be broken up into tokens/tags and displayed separately. It's what you'd expect to see when tagging a post on Tumblr or Stack-Overflow. Mostly, I just wanted to do this myself, from scratch.
 
 *This Fork*: To create a two merger token for Field:Value items.
-
-Screenshot:
-
-![A screenshot of the input form.](https://cloud.githubusercontent.com/assets/1848368/7214289/eec96300-e559-11e4-92f2-3859b9f3fc00.png)
 
 ## Getting Started
 
@@ -136,6 +132,8 @@ If this isn't what you need, there are other great options out there. Try these:
 - Don McCurdy
 - Adam Skowron
 - Bob Frost
+
+- Deo Fetalvero
 
 ## Open Source License
 
