@@ -30,11 +30,12 @@
 			allowUnknownTags: true,
 			numToSuggest: 5,
 			onclick: null,
-			allowDuplicates: false
-		}, argOpts);
+			allowDuplicates: true
+		}, argOpts),
+		isInputFieldValue = false;
 
 		// PRIVATE METHODS
-		var init, buildHTML, bindEvents, push, pop, remove, get, empty,
+		var init, buildHTML, bindEvents, push, pop, remove, get, inputtingFieldValue, empty,
 		destroy, callback, suggest, getMatch, tryPush, escapeRegExp,
 		isFirstOccurrence;
 
@@ -148,15 +149,26 @@
 			};
 			push = function (value) {
 				var firstOccurrence = isFirstOccurrence(value);
-	            if(options.allowDuplicates || firstOccurrence) {
-					var
+	            if(firstOccurrence) {
+	            	var
 					ns = options.namespace,
 					pre = ns+'-token',
-					token = '<div class="'+pre+'" data-token="'+value+'">'+
-					'<span class="'+pre+'-label">'+value.trim()+'</span>'+
-					'<span class="'+pre+'-x">'+options.xContent+'</span>'+
-					'</div>';
-					list.append(token);
+					token;
+	            	if (!isInputFieldValue) {
+						token = '<div class="'+pre+'" data-token="'+value+'">'+
+						'<span class="'+pre+'-label">'+value.trim()+'</span>'+
+						'<span class="'+pre+'-x">'+options.xContent+'</span>'+
+						'</div>';
+						list.append(token);
+						isInputFieldValue = true;
+	            	} else {
+	            		token = ':<span class="'+pre+'-value" data-token="'+value+'">'+
+						'<span class="'+pre+'-label">'+value.trim()+'</span>'+
+						'</span>';
+						list.append(list.children().last().detach().append(token));
+						isInputFieldValue = false;
+	            	}
+					
 	            }
 				return input;
 			};
@@ -179,9 +191,21 @@
 				tokenList = [],
 				tokens = list.children();
 				for (i = 0; i < tokens.length; i++) {
-					tokenList.push(tokens.eq(i).data('token').toString());
+					var theToken = tokens.eq(i);
+					var theChild = theToken.children().filter(function() {
+						return $(this).hasClass(options.namespace+'-token-value'); // jshint ignore:line
+					}).get(0);
+
+					var pushString = theToken.data('token').toString();
+					if (theChild) {
+						pushString += ':'+$(theChild).data('token').toString();
+					} 
+					tokenList.push(pushString);
 				}
 				return tokenList;
+			};
+			inputtingFieldValue = function () {
+				return isInputFieldValue;
 			};
 			destroy = function () {
 				wrap.after(input).remove();
@@ -228,6 +252,7 @@
 				remove: remove,
 				empty: empty,
 				get: get,
+				inputtingFieldValue: inputtingFieldValue,
 				destroy: destroy,
 				callback: callback
 			};
@@ -257,6 +282,9 @@
 		},
 		get: function () {
 			return this.data(tokenizer).get();
+		},
+		inputtingFieldValue: function () {
+			return this.data(tokenizer).inputtingFieldValue();
 		},
 		destroy: function () {
 			return this.data(tokenizer).destroy();

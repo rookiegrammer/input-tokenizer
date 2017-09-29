@@ -57,6 +57,10 @@
     cursor: pointer;
 }
 
+.tknz-token-value { /* An individual token */
+    
+}
+
 .tknz-token-label { /* Token's label */
     word-break: break-word;
 }
@@ -66,6 +70,7 @@
     padding-left: 7px;
     position: relative;
     top: 1px;
+    float: right;
 }
 .tknz-token-x:hover {
     text-shadow: 0px 0px 3px #eee;
