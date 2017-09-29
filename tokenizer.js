@@ -1,5 +1,5 @@
 // Input Tokenizer
-// Author: Don McCurdy
+// Author: Don McCurdy, Deo Fetalvero
 
 (function (factory) {
 	if(typeof module === 'object' && typeof module.exports === 'object') {
@@ -190,16 +190,19 @@
 				tokenList = [],
 				tokens = list.children();
 				for (i = 0; i < tokens.length; i++) {
-					var theToken = tokens.eq(i);
-					var theChild = theToken.children().filter(function() {
-						return $(this).hasClass(options.namespace+'-token-value'); // jshint ignore:line
+					var field = tokens.eq(i);
+					var value = field.children().filter(function() { // jshint ignore:line
+						return $(this).hasClass(options.namespace+'-token-value');
 					}).get(0);
 
-					var pushString = theToken.data('token').toString();
-					if (theChild) {
-						pushString += ':'+$(theChild).data('token').toString();
+					var fieldValueToken = [];
+					fieldValueToken.push(field.data('token').toString());
+
+					if (value) {
+						fieldValueToken.push($(value).data('token').toString());
 					} 
-					tokenList.push(pushString);
+
+					tokenList.push(fieldValueToken);
 				}
 				return tokenList;
 			};
