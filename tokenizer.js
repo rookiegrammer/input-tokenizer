@@ -27,10 +27,9 @@
 			separators: [',', ' ', '.'],
 			callback: null,
 			source: null,
-			allowUnknownTags: true,
+			allowUnknownFieldTags: true,
 			numToSuggest: 5,
-			onclick: null,
-			allowDuplicates: true
+			onclick: null
 		}, argOpts),
 		isInputFieldValue = false;
 
@@ -140,7 +139,7 @@
 
 			tryPush = function (value) {
 				var match = getMatch();
-				if (value && (options.allowUnknownTags || match)) {
+				if (value && (options.allowUnknownFieldTags || match || isInputFieldValue)) {
 					push(match || value);
 					input.val('');
 					callback();
@@ -226,7 +225,6 @@
 				limit = options.numToSuggest || 1000,
 				list = [];
 				for (i = 0; word && i < words.length && list.length < limit; i++) {
-					if (!words[i].match(re1) || (!options.allowDuplicates && !isFirstOccurrence(words[i], i))) { continue; }
 					list.push('<li class="'+ns+'-suggest-li'+
 						(words[i].match(re2) ? ' '+ns+'-sel' : '')+'">'+words[i]+'</li>');
 				}
